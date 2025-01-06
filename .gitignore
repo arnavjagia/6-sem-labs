@@ -1,0 +1,32 @@
+# python venv for labs
+.venv/
+*.pyc
+
+# python ignore
+*/__pycache__/
+*.py[cod]
+*$py.class
+
+# jupyter notebook ignore
+.ipynb_checkpoints/
+
+# data ignore
+*.csv
+*.json
+*.pkl
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.sqlite
+*.db
+*.dbf
+*.shp
+*.prj
+*.shx
+*.cpg
+*.xml
+*.zip
+
+# pycharm config files
+.idea/
