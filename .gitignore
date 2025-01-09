@@ -30,3 +30,6 @@
 
 # pycharm config files
 .idea/
+
+# include vscode config files
+!.vscode/*.json
