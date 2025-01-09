@@ -1,0 +1,58 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "MPI: mpicc build",
+			"command": "mpicc",
+			"args": [
+				"${file}",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}.out",
+				"-lm"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "Compile with mpicc"
+		},
+		{
+			"type": "shell",
+			"label": "MPI: mpirun execution",
+			"command": "mpirun",
+			"args": [
+				"-np",
+				"${input:processCount}",
+				"${fileDirname}/${fileBasenameNoExtension}.out"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"group": {
+				"kind": "test",
+				"isDefault": false
+			},
+			"detail": "Run with mpirun",
+			"problemMatcher": [],
+			"presentation": {
+				"clear": true
+			}
+		}
+	],
+	"inputs": [
+	  {
+		"id": "processCount",
+		"type": "promptString",
+		"description": "Enter number of processes for mpirun (e.g. 4)",
+		"default": "4"
+	  }
+	]
+  }
+  
