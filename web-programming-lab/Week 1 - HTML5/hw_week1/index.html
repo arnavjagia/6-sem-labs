@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conference Registration Form</title>
+  </head>
+  <body>
+    <h1>Conference Registration Form</h1>
+    <form action="index.html" method="get">
+      <h2>Participant Details</h2>
+      <label for="name">Full Name:
+        <input id="name" name="name" type="text" placeholder="Enter your full name" required />
+      </label>
+      <label for="email">Email:
+        <input id="email" name="email" type="email" placeholder="example@domain.com" required />
+      </label>
+      <label for="phone">Phone Number:
+        <input id="phone" name="phone" type="tel" pattern="\d{10}" required />
+      </label>
+      <label for="age">Age:
+        <input id="age" name="age" type="number" min="18" max="60" />
+      </label>
+
+      <h2>Event Preferences</h2>
+      <select id="event" name="event" multiple>
+        <option value="Coding Contest">Coding Contest</option>
+        <option value="Hackathon">Hackathon</option>
+        <option value="Paper Presentation">Paper Presentation</option>
+        <option value="Robotics Challenge">Robotics Challenge</option>
+        <option value="Keynote Session">Keynote Session</option>
+      </select>
+      <p>Hold Ctrl (Windows) or Command (Mac) to select multiple options.</p>
+
+      <h2>Accommodation Details</h2>
+      <label for="accommodationHostel">
+        <input id="accommodationHostel" name="accommodation" type="radio" value="hostel" />
+        Hostel
+      </label>
+      <label for="accommodationHotel">
+        <input id="accommodationHotel" name="accommodation" type="radio" value="hotel" />
+        Hotel
+      </label>
+      <label for="accommodationNone">
+        <input id="accommodationNone" name="accommodation" type="radio" value="none" required />
+        None
+      </label>
+
+      <h2>Dietary Preferences</h2>
+      <label for="dietVegetarian">
+        <input id="dietVegetarian" type="checkbox" name="diet" value="Vegetarian" />
+        Vegetarian
+      </label>
+      <label for="dietNonVegetarian">
+        <input id="dietNonVegetarian" type="checkbox" name="diet" value="Non-Vegetarian" />
+        Non-Vegetarian
+      </label>
+      <label for="dietVegan">
+        <input id="dietVegan" type="checkbox" name="diet" value="Vegan" />
+        Vegan
+      </label>
+      <label for="dietOther">
+        <input id="dietOther" type="checkbox" name="diet" value="Other" onclick="this.form.otherDiet.disabled=!this.checked" />
+        Other (Specify below)
+      </label>
+      <input type="text" name="otherDiet" disabled />
+
+      <h2>Additional Info</h2>
+      <label>Upload Student ID (PDF only, max 5MB):
+        <input type="file" name="studentID" accept="application/pdf" />
+      </label>
+      <br>
+      <label>Comments/Requests (max 300 chars):
+        <textarea name="comments" maxlength="300"></textarea>
+      </label>
+
+      <h2>Consent and Submission</h2>
+      <label><input type="checkbox" name="terms" required>I agree to the terms and conditions</label>
+      <br><br>
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
+  </body>
+</html>
