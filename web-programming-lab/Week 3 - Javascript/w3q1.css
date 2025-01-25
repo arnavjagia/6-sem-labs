@@ -1,0 +1,18 @@
+.question-container {
+  display: none;
+}
+
+.question-container.active {
+  display: block;
+}
+
+.feedback {
+  margin-top: 10px;
+  display: none;
+}
+
+#timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #dc3545;
+}

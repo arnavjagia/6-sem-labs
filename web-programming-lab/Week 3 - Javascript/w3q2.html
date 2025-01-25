@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Clock & Greetings</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+      }
+
+      .clock-container {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .time {
+        font-size: 4.5rem;
+        font-weight: bold;
+        margin: 1rem 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .date {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #e0e0e0;
+      }
+
+      .greeting {
+        font-size: 2rem;
+        margin-top: 1rem;
+        color: #ffd700;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .user-info {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: #e0e0e0;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-in {
+        animation: fadeIn 1s ease-out;
+      }
+
+      /* Dynamic background based on time */
+      .morning {
+        background: linear-gradient(135deg, #ff9966, #ff5e62);
+      }
+
+      .afternoon {
+        background: linear-gradient(135deg, #00b4db, #0083b0);
+      }
+
+      .evening {
+        background: linear-gradient(135deg, #614385, #516395);
+      }
+
+      .night {
+        background: linear-gradient(135deg, #141e30, #243b55);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock-container animate-in">
+      <div class="date" id="date"></div>
+      <div class="time" id="time"></div>
+      <div class="greeting" id="greeting"></div>
+      <div class="user-info" id="user-info"></div>
+    </div>
+
+    <script>
+      // Get user's name from the login
+      const username = "arnavjagia";
+
+      function updateClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        // Format time
+        const timeString = `${String(hours).padStart(2, "0")}:${String(
+          minutes
+        ).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+        // Format date
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const dateString = now.toLocaleDateString("en-US", options);
+
+        // Update DOM
+        document.getElementById("time").textContent = timeString;
+        document.getElementById("date").textContent = dateString;
+
+        // Set greeting based on time
+        let greeting;
+        let timeOfDay;
+        if (hours >= 5 && hours < 12) {
+          greeting = "Good Morning";
+          timeOfDay = "morning";
+        } else if (hours >= 12 && hours < 17) {
+          greeting = "Good Afternoon";
+          timeOfDay = "afternoon";
+        } else if (hours >= 17 && hours < 21) {
+          greeting = "Good Evening";
+          timeOfDay = "evening";
+        } else {
+          greeting = "Good Night";
+          timeOfDay = "night";
+        }
+
+        // Update greeting and user info
+        document.getElementById(
+          "greeting"
+        ).textContent = `${greeting}, ${username}!`;
+        document.getElementById(
+          "user-info"
+        ).textContent = `Welcome to your personal dashboard`;
+
+        // Update background based on time of day
+        document.body.className = timeOfDay;
+      }
+
+      // Initial update
+      updateClock();
+
+      // Show welcome message
+      setTimeout(() => {
+        const hour = new Date().getHours();
+        let message;
+
+        if (hour >= 5 && hour < 12) {
+          message = "Rise and shine! Ready for a productive day?";
+        } else if (hour >= 12 && hour < 17) {
+          message = "Hope you're having a great day!";
+        } else if (hour >= 17 && hour < 21) {
+          message = "Time to start winding down!";
+        } else {
+          message = "Sweet dreams are on the way!";
+        }
+
+        alert(`Welcome ${username}! ${message}`);
+      }, 1000);
+
+      // Update clock every second
+      setInterval(updateClock, 1000);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
