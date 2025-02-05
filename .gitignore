@@ -33,3 +33,6 @@
 
 # include vscode config files
 !.vscode/*.json
+
+# exclude out files
+*.out
