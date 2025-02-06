@@ -3,5 +3,9 @@
     {
         "key": "alt+s",
         "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "shift+alt+m",
+        "command": "workbench.action.toggleMaximizedPanel"
     }
 ]
