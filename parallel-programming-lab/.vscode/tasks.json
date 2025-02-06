@@ -21,7 +21,11 @@
                 "kind": "build",
                 // "isDefault": true
             },
-            "detail": "Compile with mpicc"
+            "detail": "Compile with mpicc",
+            "presentation": {
+                "focus": true,
+                "revealProblems": "onProblem"
+            }
         },
         {
             "type": "shell",
@@ -42,7 +46,8 @@
             "detail": "Run with mpirun",
             "problemMatcher": [],
             "presentation": {
-                "clear": true
+                "clear": true,
+                "focus": true
             }
         },
         {
@@ -86,7 +91,11 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Compile and run with nvcc"
+            "detail": "Compile and run with nvcc",
+            "presentation": {
+                "focus": true,
+                "revealProblems": "onProblem"
+            }
         },
     ],
     "inputs": [
