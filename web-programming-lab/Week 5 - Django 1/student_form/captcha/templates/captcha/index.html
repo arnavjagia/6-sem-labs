@@ -1,0 +1,188 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .captcha-container {
+            background-color: #f0f0f0;
+            padding: 10px;
+            width: 150px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+        }
+
+        .captcha-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #888;
+            transform: rotate(-5deg);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CAPTCHA Validation</h1>
+        <p>Enter the text shown in the image below:</p>
+
+        <div class="captcha-container" id="captcha-text"></div>
+
+        <div class="form-group">
+            <label for="user-input">Enter CAPTCHA:</label>
+            <input type="text" id="user-input" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <button class="btn" id="validate-btn">Validate</button>
+            <button class="btn" id="refresh-btn">Refresh CAPTCHA</button>
+        </div>
+
+        <div class="message" id="message" style="display: none;"></div>
+        <div id="attempts-left">Attempts left: 3</div>
+    </div>
+
+    <script>
+        // Generate random captcha text
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return captcha;
+        }
+
+        // Display captcha in the container
+        function displayCaptcha() {
+            const captchaText = generateCaptcha();
+            document.getElementById('captcha-text').innerText = captchaText;
+            return captchaText;
+        }
+
+        // Main variables
+        let currentCaptcha = '';
+        let attempts = 3;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            currentCaptcha = displayCaptcha();
+
+            // Validate button click event
+            document.getElementById('validate-btn').addEventListener('click', function () {
+                validateCaptcha();
+            });
+
+            // Refresh button click event
+            document.getElementById('refresh-btn').addEventListener('click', function () {
+                currentCaptcha = displayCaptcha();
+                document.getElementById('message').style.display = 'none';
+            });
+
+            // Allow Enter key to submit
+            document.getElementById('user-input').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    validateCaptcha();
+                }
+            });
+        });
+
+        // Validate the captcha input
+        function validateCaptcha() {
+            const userInput = document.getElementById('user-input').value;
+            const messageDiv = document.getElementById('message');
+
+            if (userInput === currentCaptcha) {
+                messageDiv.className = 'message success';
+                messageDiv.innerText = 'CAPTCHA matched successfully!';
+                messageDiv.style.display = 'block';
+                attempts = 3; // Reset attempts on success
+                document.getElementById('attempts-left').innerText = 'Attempts left: ' + attempts;
+            } else {
+                attempts--;
+                document.getElementById('attempts-left').innerText = 'Attempts left: ' + attempts;
+
+                if (attempts <= 0) {
+                    messageDiv.className = 'message error';
+                    messageDiv.innerText = 'Too many failed attempts. Input has been disabled.';
+                    messageDiv.style.display = 'block';
+
+                    // Disable the input and validate button
+                    document.getElementById('user-input').disabled = true;
+                    document.getElementById('user-input').classList.add('disabled');
+                    document.getElementById('validate-btn').disabled = true;
+                    document.getElementById('validate-btn').classList.add('disabled');
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.innerText = 'CAPTCHA does not match. Try again. Attempts left: ' + attempts;
+                    messageDiv.style.display = 'block';
+                    currentCaptcha = displayCaptcha(); // Generate new captcha
+                }
+            }
+
+            // Clear the input field
+            document.getElementById('user-input').value = '';
+        }
+    </script>
+</body>
+
+</html>
