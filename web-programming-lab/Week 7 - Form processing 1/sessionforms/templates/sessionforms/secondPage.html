@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Second Page</title>
+</head>
+<body>
+    <h2>User Information</h2>
+    <div>
+        <label>
+            Name: {{ user_data.name }}<br>
+            Roll: {{ user_data.roll }}<br>
+            Subject: {{ user_data.subject }}
+        </label>
+    </div>
+    <br>
+    <form action="{% url 'first_page' %}">
+        <button type="submit">Back to First Page</button>
+    </form>
+</body>
+</html>
