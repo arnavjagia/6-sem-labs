@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0px;
+        }
+        input#name {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            resize: vertical;
+            font-family: inherit;
+        }
+        .formatting-options {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .option-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .option-label {
+            min-width: 100px;
+            font-weight: bold;
+        }
+        .option-choices {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+        #formatted-message {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            min-height: 50px;
+            white-space: pre-wrap;
+        }
+        .user-info {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-left: 3px solid #ccc;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Formatter</h1>
+    
+    <!-- <div class="user-info">
+        <div>Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-02-28 04:48:35</div>
+        <div>Current User's Login: arnavjagia</div>
+    </div> -->
+    
+    <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
+    </div>
+    
+    <div class="formatting-options">
+        <h3>Format Options:</h3>
+        
+        <!-- Text Style Row -->
+        <div class="option-row">
+            <div class="option-label">Text Style:</div>
+            <div class="option-choices">
+                <div>
+                    <input type="checkbox" id="bold" name="style" value="bold">
+                    <label for="bold">Bold</label>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="italic" name="style" value="italic">
+                    <label for="italic">Italic</label>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="underline" name="style" value="underline">
+                    <label for="underline">Underline</label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Text Color Row -->
+        <div class="option-row">
+            <div class="option-label">Text Color:</div>
+            <div class="option-choices">
+                <div>
+                    <input type="radio" id="black" name="color" value="black" checked>
+                    <label for="black">Black</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="red" name="color" value="red">
+                    <label for="red">Red</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="blue" name="color" value="blue">
+                    <label for="blue">Blue</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="green" name="color" value="green">
+                    <label for="green">Green</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="button-group">
+        <button id="display-btn">Display Message</button>
+        <button id="clear-btn">Clear All</button>
+        <button id="exit-btn">Exit</button>
+    </div>
+    
+    <div id="formatted-message">
+        <!-- Message displayed here -->
+    </div>
+    
+    <script>
+        document.getElementById('display-btn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !message) {
+                alert('Please enter both name and message');
+                return;
+            }
+            
+            const outputElement = document.getElementById('formatted-message');
+            const formattedDiv = document.createElement('div');
+            
+            const nameLine = document.createElement('div');
+            nameLine.textContent = 'Name: ' + name;
+            nameLine.textContent =  name + ': ' + message;
+            
+            const messageLine = document.createElement('div');
+            // messageLine.textContent = 'Message: ' + message;
+            
+            const selectedColor = document.querySelector('input[name="color"]:checked').value;
+            nameLine.style.color = selectedColor;
+            messageLine.style.color = selectedColor;
+            
+            if (document.getElementById('bold').checked) {
+                nameLine.style.fontWeight = 'bold';
+                messageLine.style.fontWeight = 'bold';
+            }
+            
+            if (document.getElementById('italic').checked) {
+                nameLine.style.fontStyle = 'italic';
+                messageLine.style.fontStyle = 'italic';
+            }
+            
+            if (document.getElementById('underline').checked) {
+                nameLine.style.textDecoration = 'underline';
+                messageLine.style.textDecoration = 'underline';
+            }
+            
+            outputElement.innerHTML = '';
+            formattedDiv.appendChild(nameLine);
+            formattedDiv.appendChild(messageLine);
+            outputElement.appendChild(formattedDiv);
+        });
+        
+        document.getElementById('clear-btn').addEventListener('click', function() {
+            document.getElementById('name').value = '';
+            document.getElementById('message').value = '';
+            document.getElementById('formatted-message').innerHTML = '';
+            
+            document.getElementById('bold').checked = false;
+            document.getElementById('italic').checked = false;
+            document.getElementById('underline').checked = false;
+            document.getElementById('black').checked = true;
+        });
+        
+        document.getElementById('exit-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to exit?')) {
+                window.close();
+                window.location.href = "about:blank";
+            }
+        });
+    </script>
+</body>
+</html>
