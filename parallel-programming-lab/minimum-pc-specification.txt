@@ -1,0 +1,68 @@
+System:
+  Kernel: 6.1.0-32-amd64 arch: x86_64 bits: 64 compiler: gcc v: 12.2.0 Desktop: Cinnamon v: 5.6.8
+    tk: GTK v: 3.24.38 dm: GDM3 Distro: Debian GNU/Linux 12 (bookworm)
+Machine:
+  Type: Desktop System: HP product: HP Pro Tower 400 G9 PCI Desktop PC v: SBKPF
+    serial: <superuser required> Chassis: type: 3 serial: <superuser required>
+  Mobo: HP model: 8C59 v: KBC Version 12.03.27 serial: <superuser required> UEFI: HP
+    v: U03 Ver. 02.16.10 date: 11/20/2024
+CPU:
+  Info: 20-core (8-mt/12-st) model: Intel Core i7-14700 bits: 64 type: MST AMCP arch: Raptor Lake
+    rev: 1 cache: L1: 1.8 MiB L2: 28 MiB L3: 33 MiB
+  Speed (MHz): avg: 1154 high: 4036 min/max: 800/5300:5400:4200 cores: 1: 800 2: 800 3: 800
+    4: 800 5: 800 6: 800 7: 800 8: 800 9: 3108 10: 800 11: 4036 12: 800 13: 800 14: 800 15: 800
+    16: 800 17: 3560 18: 2410 19: 800 20: 800 21: 800 22: 800 23: 800 24: 800 25: 800 26: 800
+    27: 800 28: 800 bogomips: 118272
+  Flags: avx avx2 ht lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx
+Graphics:
+  Device-1: Intel Raptor Lake-S GT1 [UHD Graphics 770] vendor: Hewlett-Packard driver: i915
+    v: kernel arch: Gen-13 ports: active: none empty: DP-1, DP-2, HDMI-A-1, HDMI-A-2, HDMI-A-3,
+    HDMI-A-4 bus-ID: 00:02.0 chip-ID: 8086:a780
+  Device-2: NVIDIA TU117GL [T400 4GB] vendor: Hewlett-Packard driver: nvidia v: 535.216.01
+    arch: Turing pcie: speed: 5 GT/s lanes: 16 bus-ID: 01:00.0 chip-ID: 10de:1ff2
+  Display: x11 server: X.Org v: 1.21.1.7 with: Xwayland v: 22.1.9 driver: X:
+    loaded: modesetting,nvidia unloaded: fbdev,nouveau,vesa alternate: nv dri: iris gpu: i915,nvidia
+    display-ID: :1 screens: 1
+  Screen-1: 0 s-res: 1920x1080 s-dpi: 92
+  Monitor-1: DP-3 res: 1920x1080 dpi: 92 diag: 609mm (23.98")
+  API: OpenGL v: 4.6.0 NVIDIA 535.216.01 renderer: NVIDIA T400 4GB/PCIe/SSE2 direct-render: Yes
+Audio:
+  Device-1: Intel Alder Lake-S HD Audio vendor: Hewlett-Packard driver: snd_hda_intel v: kernel
+    bus-ID: 00:1f.3 chip-ID: 8086:7ad0
+  Device-2: NVIDIA vendor: Hewlett-Packard driver: snd_hda_intel v: kernel pcie: speed: 8 GT/s
+    lanes: 16 bus-ID: 01:00.1 chip-ID: 10de:10fa
+  API: ALSA v: k6.1.0-32-amd64 status: kernel-api
+  Server-1: PipeWire v: 0.3.65 status: active with: 1: pipewire-pulse status: active
+    2: wireplumber status: active 3: pipewire-alsa type: plugin
+Network:
+  Device-1: Intel Ethernet I219-LM vendor: Hewlett-Packard driver: e1000e v: kernel port: N/A
+    bus-ID: 00:1f.6 chip-ID: 8086:1a1c
+  IF: eno1 state: up speed: 100 Mbps duplex: full mac: <filter>
+Drives:
+  Local Storage: total: 953.87 GiB used: 62.51 GiB (6.6%)
+  ID-1: /dev/nvme0n1 model: ABSNE191TB size: 953.87 GiB speed: 63.2 Gb/s lanes: 4
+    serial: <filter> temp: 28.9 C
+Partition:
+  ID-1: / size: 91.11 GiB used: 39.22 GiB (43.0%) fs: ext4 dev: /dev/nvme0n1p9
+  ID-2: /boot/efi size: 96 MiB used: 90.8 MiB (94.6%) fs: vfat dev: /dev/nvme0n1p1
+  ID-3: /home size: 91.11 GiB used: 20.68 GiB (22.7%) fs: ext4 dev: /dev/nvme0n1p10
+  ID-4: /opt size: 45.53 GiB used: 800.9 MiB (1.7%) fs: ext4 dev: /dev/nvme0n1p11
+Swap:
+  ID-1: swap-1 type: partition size: 29.8 GiB used: 0 KiB (0.0%) priority: -2 dev: /dev/nvme0n1p8
+Sensors:
+  System Temperatures: cpu: 37.0 C mobo: N/A gpu: nvidia temp: 34 C
+  Fan Speeds (RPM): N/A gpu: nvidia fan: 38%
+Repos:
+  Packages: 4130 pm: dpkg pkgs: 4122 pm: snap pkgs: 8
+  Active apt repos in: /etc/apt/sources.list
+    1: deb http: //deb.debian.org/debian/ bookworm main non-free-firmware contrib non-free
+    2: deb-src http: //deb.debian.org/debian/ bookworm main non-free-firmware contrib non-free
+    3: deb http: //security.debian.org/debian-security bookworm-security main non-free-firmware contrib non-free
+    4: deb-src http: //security.debian.org/debian-security bookworm-security main non-free-firmware contrib non-free
+    5: deb http: //deb.debian.org/debian/ bookworm-updates main non-free-firmware contrib non-free
+    6: deb-src http: //deb.debian.org/debian/ bookworm-updates main non-free-firmware contrib non-free
+  No active apt repos in: /etc/apt/sources.list.d/sublime-text.list
+Info:
+  Processes: 412 Uptime: 55m Memory: 31.02 GiB used: 3.61 GiB (11.6%) Init: systemd v: 252
+  target: graphical (5) default: graphical Compilers: gcc: 12.2.0 alt: 11/12 Client: Cinnamon
+  v: 5.6.8 inxi: 3.3.26
