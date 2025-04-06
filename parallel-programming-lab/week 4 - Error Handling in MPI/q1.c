@@ -36,12 +36,13 @@ int main(int argc, char *argv[]) {
     error_code = MPI_Scan(&local_fact, &fact_sum, 1, MPI_INT, MPI_SUM, invalid_comm);
 
     if (error_code != MPI_SUCCESS) {
-        MPI_Error_class(error_code, &error_class);
+        // MPI_Error_class(error_code, &error_class);
         MPI_Error_string(error_class, error_string, &error_length);
 
-        custom_error_handler(&invalid_comm, &error_code);
+        // custom_error_handler(&invalid_comm, &error_code);
 
         printf("| Error class: %d | Error code: %d | Error message: %s |\n", error_class, error_code, error_string);
+        MPI_Abort(MPI_COMM_WORLD, error_code);
     } else {
         if (rank == size - 1) {
             printf("Summation of factorials: %d\n", fact_sum);

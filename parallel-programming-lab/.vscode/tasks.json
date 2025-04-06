@@ -19,7 +19,7 @@
             ],
             "group": {
                 "kind": "build",
-                // "isDefault": true
+                "isDefault": true
             },
             "detail": "Compile with mpicc",
             "presentation": {
@@ -89,7 +89,7 @@
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true
+                // "isDefault": true
             },
             "detail": "Compile and run with nvcc",
             "presentation": {

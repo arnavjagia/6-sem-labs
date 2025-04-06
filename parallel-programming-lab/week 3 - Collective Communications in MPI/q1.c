@@ -31,7 +31,6 @@ int main(int argc, char **argv) {
 
     c = factorial(&c);
     B = malloc(sizeof(int) * N);
-    MPI_Gather(&c, 1, MPI_INT, B, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     MPI_Gather(&c, 1, MPI_INT, B, 1, MPI_INT, 0, MPI_COMM_WORLD);
     if (rank == 0) {

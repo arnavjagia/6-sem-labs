@@ -21,17 +21,18 @@ int main(int argc, char *argv[]) {
             MPI_Bsend(&x, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
             // remember: MPI_Send cannot use MPI_ANY_TAG
         }
+        MPI_Barrier(MPI_COMM_WORLD);
 
         MPI_Buffer_detach(&buffer, &buffer_size);
         free(buffer);
     } else {
         int x;
         MPI_Recv(&x, 1, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
+        MPI_Barrier(MPI_COMM_WORLD);
         if (rank & 1)
-            printf("Rank %d: %d\n", rank, x * x);
+            printf("x %d Rank %d: %d\n", x, rank, x * x * x);
         else
-            printf("Rank %d: %d\n", rank, x * x * x);
+            printf("x %d Rank %d: %d\n", x, rank, x * x);
     }
 
     MPI_Finalize();
